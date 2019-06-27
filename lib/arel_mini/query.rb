@@ -1,5 +1,7 @@
 module ArelMini
   class Query
+    FRAGMENT_CLASSES = [Fragments::Select, Fragments::From].freeze
+
     attr_reader :fragments
 
     def initialize(root = nil)
@@ -19,10 +21,15 @@ module ArelMini
       fragments << fragment
     end
 
-    def select(args)
-      fragment = Fragments::Select.new(args)
-      root.add_fragment(fragment)
-      self.class.new(root)
+    FRAGMENT_CLASSES.each do |klass|
+      # to get the class name without namespace, we can also use the string method `demodulize`
+      # from ActiveSupport::Inflector, if available
+      method_name = klass.name.split('::').last.downcase
+      define_method(method_name) do |args|
+        fragment = klass.new(args)
+        root.add_fragment(fragment)
+        self.class.new(root)
+      end
     end
   end
 end

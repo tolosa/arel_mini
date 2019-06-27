@@ -1,6 +1,4 @@
-require "arel_mini/version"
+require 'arel_mini/version'
+require 'arel_mini/query'
 
-module ArelMini
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require 'arel_mini/fragments/select'

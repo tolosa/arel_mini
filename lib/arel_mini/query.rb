@@ -22,7 +22,7 @@ module ArelMini
     def select(args)
       fragment = Fragments::Select.new(args)
       root.add_fragment(fragment)
-      Query.new(root)
+      self.class.new(root)
     end
   end
 end

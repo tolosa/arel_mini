@@ -6,14 +6,6 @@ module ArelMini
       ast.map(&:to_sql).join(' ')
     end
 
-    def ast
-      @ast ||= []
-    end
-
-    def add_fragment(fragment)
-      ast << fragment
-    end
-
     FRAGMENT_CLASSES.each do |klass|
       # to get the class name without namespace, we can also use the string method `demodulize`
       # from ActiveSupport::Inflector, if available
@@ -23,6 +15,16 @@ module ArelMini
         add_fragment(fragment)
         self
       end
+    end
+
+    private
+
+    def ast
+      @ast ||= []
+    end
+
+    def add_fragment(fragment)
+      ast << fragment
     end
   end
 end

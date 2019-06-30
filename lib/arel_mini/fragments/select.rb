@@ -1,4 +1,4 @@
-module ArelMini::Fragments
+module ArelMini::Nodes
   class Select < Base
     def to_sql
       "SELECT #{args}"

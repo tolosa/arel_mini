@@ -1,12 +1,12 @@
 module ArelMini
   class Query
-    FRAGMENT_CLASSES = [Fragments::Select, Fragments::From].freeze
+    NODES_CLASSES = [Nodes::Select, Nodes::From].freeze
 
     def to_sql
       ast.map(&:to_sql).join(' ')
     end
 
-    FRAGMENT_CLASSES.each do |klass|
+    NODES_CLASSES.each do |klass|
       # to get the class name without namespace, we can also use the string method `demodulize`
       # from ActiveSupport::Inflector, if available
       method_name = klass.name.split('::').last.downcase

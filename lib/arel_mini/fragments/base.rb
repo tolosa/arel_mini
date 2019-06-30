@@ -1,4 +1,4 @@
-module ArelMini::Fragments
+module ArelMini::Nodes
   class Base
     attr_reader :args
 

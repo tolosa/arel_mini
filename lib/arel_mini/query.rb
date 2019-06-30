@@ -1,6 +1,6 @@
 module ArelMini
   class Query
-    NODES_CLASSES = [Nodes::Select, Nodes::From, Nodes::Where].freeze
+    NODES_CLASSES = [Nodes::Select, Nodes::From, Nodes::Where, Nodes::Limit].freeze
 
     def to_sql
       ast.map(&:to_sql_fragment).join(' ')

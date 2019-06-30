@@ -11,8 +11,8 @@ module ArelMini
       # from ActiveSupport::Inflector, if available
       method_name = klass.name.split('::').last.downcase
       define_method(method_name) do |args|
-        fragment = klass.new(args)
-        add_fragment(fragment)
+        node = klass.new(args)
+        add_node(node)
         self
       end
     end
@@ -23,8 +23,8 @@ module ArelMini
       @ast ||= []
     end
 
-    def add_fragment(fragment)
-      ast << fragment
+    def add_node(node)
+      ast << node
     end
   end
 end

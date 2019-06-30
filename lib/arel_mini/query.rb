@@ -3,7 +3,7 @@ module ArelMini
     NODES_CLASSES = [Nodes::Select, Nodes::From].freeze
 
     def to_sql
-      ast.map(&:to_sql).join(' ')
+      ast.map(&:to_sql_fragment).join(' ')
     end
 
     NODES_CLASSES.each do |klass|

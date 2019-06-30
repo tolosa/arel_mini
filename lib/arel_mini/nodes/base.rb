@@ -6,7 +6,7 @@ module ArelMini::Nodes
       @args = args
     end
 
-    def to_sql
+    def to_sql_fragment
       raise NotImplementedError
     end
   end

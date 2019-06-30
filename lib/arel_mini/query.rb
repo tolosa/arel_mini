@@ -11,7 +11,7 @@ module ArelMini
       # string method `demodulize`from ActiveSupport::Inflector, if available
       method_name = klass.name.split('::').last.downcase
       define_method(method_name) do |*args|
-        node = klass.new(args)
+        node = klass.new(*args)
         add_node(node)
         self
       end

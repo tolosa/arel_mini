@@ -4,17 +4,12 @@ module ArelMini
 
     attr_reader :fragments
 
-    def initialize(root = nil)
-      @root = root
+    def initialize
       @fragments = []
     end
 
-    def root
-      @root || self
-    end
-
     def to_sql
-      root.fragments.map(&:to_sql).join(' ')
+      fragments.map(&:to_sql).join(' ')
     end
 
     def add_fragment(fragment)
@@ -27,8 +22,8 @@ module ArelMini
       method_name = klass.name.split('::').last.downcase
       define_method(method_name) do |args|
         fragment = klass.new(args)
-        root.add_fragment(fragment)
-        self.class.new(root)
+        add_fragment(fragment)
+        self
       end
     end
   end

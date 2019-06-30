@@ -2,18 +2,18 @@ module ArelMini
   class Query
     FRAGMENT_CLASSES = [Fragments::Select, Fragments::From].freeze
 
-    attr_reader :fragments
+    attr_reader :ast
 
     def initialize
-      @fragments = []
+      @ast = []
     end
 
     def to_sql
-      fragments.map(&:to_sql).join(' ')
+      ast.map(&:to_sql).join(' ')
     end
 
     def add_fragment(fragment)
-      fragments << fragment
+      ast << fragment
     end
 
     FRAGMENT_CLASSES.each do |klass|

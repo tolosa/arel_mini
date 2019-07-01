@@ -8,8 +8,6 @@ module ArelMini
     end
 
     NODES_CLASSES.each do |klass|
-      # to get the class name without namespace, we can also use the
-      # string method `demodulize`from ActiveSupport::Inflector, if available
       method_name = klass.name.split('::').last.downcase
       define_method(method_name) do |*args|
         node = klass.new(*args)

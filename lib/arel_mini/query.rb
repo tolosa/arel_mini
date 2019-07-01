@@ -3,7 +3,8 @@ module ArelMini
     NODES_CLASSES = [Nodes::Select, Nodes::From, Nodes::Where, Nodes::Limit].freeze
 
     def to_sql
-      ast.map(&:to_sql_fragment).join(' ')
+      ordered_ast = ast.sort_by { |node| NODES_CLASSES.index(node.class) }
+      ordered_ast.map(&:to_sql_fragment).join(' ')
     end
 
     NODES_CLASSES.each do |klass|
